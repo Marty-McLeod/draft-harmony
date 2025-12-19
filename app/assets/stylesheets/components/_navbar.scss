@@ -1,12 +1,15 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  font-weight: 600;
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
 
+// Must be removed as this only works for the default Le Wagon (square) logo
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  // width: 40px; // Old value
+  height: 40px;
 }

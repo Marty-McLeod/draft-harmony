@@ -1,11 +1,45 @@
 <!-- Home page view -->
 <div class="container">
 
-    <div class="col-10 bg-white rounded-3 mt-3 p-3">
+    <div class="col-10 mt-3 p-3 mx-auto">
 
-        <h1>Pages#home</h1>
-        <p>Find me in app/views/pages/home.html.erb</p>
-        <%= link_to "Learn how to use Draft Harmony here »", how_to_path, class: "text-decoration-none" %>
+        <h1>Draft Harmony makes writing projects <span class="fst-italic text-primary">easier!</span></h1>
+        <div class="d-flex col-10-sm col-8-md justify-content-center m-3">
+            <%= image_tag "home-landing-people-2.jpg", height: 400, class: "rounded-3" %>
+        </div>
+
+        <h3>An easy-to-use paper outline tool that takes the <strong>headache and stress</strong> away when it's time to get started writing.</h3>
+        <p>Our automated assistant makes it a snap to generate an outline for all kinds of writing tasks:
+            <ul>
+                <li>School essays</li>
+                <li>Research papers</li>
+                <li>Book reports</li>
+                <li>Documentation papers</li>
+            </ul>
+            ...and <em>many</em>, many more!
+        </p>
+        <div class="d-flex col-10-sm col-8-md justify-content-center m-3">
+            <%= image_tag "home-landing-people-3.jpg", height: 400, class: "rounded-3" %>
+        </div>
+        
+        <h2>Features:</h2>
+
+        <div class="d-flex col-10 rounded-3 align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(<%= asset_path('home-landing-people-1.jpg') %>); background-position: center top; height: 600px; width: 100%;">
+            <div class="text-light p-3 m-3">
+
+                <ul class="fw-medium fs-3" style="list-style: none; content: '\f00c ';">
+                    <li><i class="fa-solid fa-check text-primary"></i> Generates a ready-to-use outline in seconds</li>
+                    <li><i class="fa-solid fa-check text-primary"></i> Add or change notes for writing tasks</li>
+                    <li><i class="fa-solid fa-check text-primary"></i> Writing tasks can be deleted, edited, and outlines re-created anytime!</li>
+                </ul>
+            </div>
+        </div>
+        <%= link_to "Learn how to use Draft Harmony »", how_to_path, class: "btn btn-primary my-3 fw-medium rounded-3" %>
+        
     </div>
 
 </div>
+
+<!-- >
+<div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(asset_path('banner-2.jpg')); background-position: center; object-fit: cover;">
+-->
