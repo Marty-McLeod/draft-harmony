@@ -6,26 +6,34 @@
             <%# Show the current count for user's tasks that exist %>
                 <h1>My writing tasks (<%= @tasks.count %>)</h1>
 
-                <a type="button" href="url_for(new_task_path)" class="btn btn-secondary btn-lg"><i class="fa-solid fa-plus"> </i>Add new task</a>
+                <a type="button" href="<%= url_for(new_task_path) %>" class="btn btn-primary btn-lg"><i class="fa-solid fa-plus"> </i>Add new task</a>
 
         </div>
 
         <%# Iterate over tasks already created and display as cards to user %>
-        <div class="row justify-content-between">
+        <div class="row justify-content-between gap-3 mt-3">
             <% @tasks.each do |task| %>
 
-                <div class="card col-3">
+                <div class="card col-5 m-1">
 
                     <div class="card-body">
                         <!-- show task title & indicate if an associated outline exists -->
-                        <div><h3 class="card-title d-flex align-center">task.title</h3><%= task.outline.exist? ? raw('<span class="badge bg-secondary"<i class="fa-solid fa-check"></i> Outline</span>') %>
+                        <div><h4 class="card-title d-flex align-center"><%= task.title %></h4>
+                            <%= raw('<span class="badge bg-success text-light"><i class="fa-solid fa-check"></i> Outline</span>') if task.outline.present? %>
                         </div>
 
                         <p class="text-ternary">Assignment notes:</p>
-                        <p><%= task.assignment_notes.present? ? task.assignment_notes : <em>(No notes yet)</em> %></p>
+                        <% if task.notes.present? %>
+                            <% task.notes.each do |note| %>
+                            <p><%= note.text %></p>
+                            <% end %>
+                        <% else %>
+                            <p><em>(No notes yet)</em></p>
+                        <% end %>
                         <p>Synopsis:</p>
                         <p class="text-muted fs-italic"><%= truncate(task.synopsis, length: 20) %></p>
-
+                        <hr>
+                        <%= link_to "Details »", task_path(task.id), class: "text-decoration-none" %>
                     </div>
 
                 </div>

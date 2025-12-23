@@ -8,6 +8,21 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  def new
+    @task = Task.new
+  end
+
+  def create
+    @task = Task.new(task_params)
+
+    if @task.save
+      redirect_to tasks_path
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+
   private
 
   # def get_task
@@ -15,7 +30,7 @@ class TasksController < ApplicationController
   # end
 
   def task_params
-    params.require(:task).permit(:title, :synopsis, :assignment_notes)
+    params.require(:task).permit(:title, :synopsis, :notes)
   end
 
 end

@@ -1,0 +1,34 @@
+<div class="container">
+    
+    <div class="col-10 bg-white rounded-3 mt-3 p-3">
+        <h1 class="mt-3">Task details</h1>
+
+        <h3>Title:</h3>
+        <h4><%= @task.title %></h4>
+        <h3>Synopsis:</h3>
+        <p><%= @task.synopsis %></p>
+        <h3>Outline:</h3>
+        <p>
+            <% if @task.outline.present? %>
+                <%= @task.outline.contents %>
+            <% else %>
+                (No outline generated)
+            <% end %>
+        </p>
+        <h3>Notes:</h3>
+            <% if @task.notes.present? %>
+                <% @task.notes.each do |note| %>
+                    <p class="border rounded-3 bg-light">
+                        <%= note.text %>
+                    </p>
+                <% end %>
+            <% else %>
+                <p>(No outline generated)</p>
+            <% end %>
+
+        <div>            
+            <%= link_to "« Back to all tasks", tasks_path, class: "text-decoration-none mt-3" %>
+        </div>        
+    </div>
+
+</div>
