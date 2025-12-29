@@ -10,6 +10,18 @@
 
         </div>
 
+        <div class="row">
+            <%= form_with url: tasks_path, method: :get, local: true, html: {style: "font-size: 21px;"} do |form| %>
+                <%= form.radio_button :index_type, "default", checked: true %>
+                <%= form.label :index_type_default, "All tasks" %>
+                <%= form.radio_button :index_type, "incomplete" %>
+                <%= form.label :index_type_incomplete, "Incomplete" %>
+                <%= form.radio_button :index_type, "done" %>
+                <%= form.label :index_type_done, "Done" %>         
+                <%= form.submit "Filter", class: "btn btn-success text-light" %>               
+            <% end %>
+        </div>
+
         <%# Iterate over tasks already created and display as cards to user %>
         <div class="row justify-content-between gap-3 mt-3">
             <% @tasks.each do |task| %>
@@ -19,10 +31,10 @@
                     <div class="card-body">
                         <!-- show task title & indicate if an associated outline exists -->
                         <div><h4 class="card-title d-flex align-center"><%= task.title %></h4>
-                            <%= raw('<span class="badge bg-success text-light"><i class="fa-solid fa-check"></i> Outline</span>') if task.outline.present? %>
+                            <%= raw('<span class="badge bg-warning "><i class="fa-solid fa-check"></i> Outline</span>') if task.outline.present? %>
                         </div>
 
-                        <p class="text-ternary">Assignment notes:</p>
+                        <p class="fw-bold">Assignment notes:</p>
                         <% if task.notes.present? %>
                             <% task.notes.each do |note| %>
                             <p><%= note.text %></p>
@@ -30,7 +42,7 @@
                         <% else %>
                             <p><em>(No notes yet)</em></p>
                         <% end %>
-                        <p>Synopsis:</p>
+                        <p class="fw-bold">Synopsis:</p>
                         <p class="text-muted fs-italic"><%= truncate(task.synopsis, length: 20) %></p>
                         <hr>
                         <%= link_to "Details »", task_path(task.id), class: "text-decoration-none" %>

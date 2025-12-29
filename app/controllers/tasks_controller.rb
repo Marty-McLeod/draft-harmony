@@ -1,7 +1,18 @@
+
 class TasksController < ApplicationController
 
   def index
-    @tasks = Task.all
+    # Get the radio button parameter (default = all tasks)
+    index_type = params[:index_type] || 'default'
+
+    @tasks = case index_type
+      when 'default'
+        Task.all
+      when 'done'
+        Task.joins(:outline)
+      when 'incomplete'
+        Task.select { |m| m.outline.present? == false }
+      end
   end
 
   def show
