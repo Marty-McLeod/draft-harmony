@@ -39,10 +39,8 @@ puts "User: #{user.email}, pwd: #{user.password}"
 puts "--" * 20
 puts "Creating dummy writing tasks.."
 
-num = 6
-
-num.times do |index|
-  puts "Creating record ##{index + 1}.., index #{index}"
+3.times do |index|
+  puts "Creating record ##{index + 1}.."
   task = Task.new()
   task.user_id = user.id
   task.title = Faker::Book.title
@@ -50,14 +48,8 @@ num.times do |index|
   if task.save!
     puts "ID #{index} saved"
   end
-  # Add a note to each record with dummy text
+  task.create_outline(contents: Faker::Lorem.paragraphs(number: 4).join(''))
   task.notes.create(text: Faker::Lorem.sentence(word_count: 20))
-
-  # Adds an outline except for the last
-  if (0...num - 2).include?(index)
-    puts "-- Creating outline for Task ##{index + 1}"
-    task.create_outline(contents: Faker::Lorem.paragraphs(number: 4).join(''))
-  end
 end
 
 # Display all records to verify
