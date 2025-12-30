@@ -1,0 +1,27 @@
+<div class="container">
+    
+    <div class="col-10 bg-white rounded-3 mt-3 p-3">
+        <h1 class="mt-3">Create a new writing task</h1>
+        <%  
+            synopsis_string = "An outline summarizing the book into 10 main sections along with subsections for main characters..."
+            note_string = 'A brief note like "Eng. comp 101, assignment #2"'
+            title_string = 'Ex. "Essay summary for Moby Dick"'
+        %>
+
+        <%= simple_form_for @task do |t| %>
+            <%= t.input :title, placeholder: title_string %>
+            <%= t.input :synopsis, placeholder: synopsis_string %>
+            <!-- Use attributes to add note (optional) in the same form -->
+            <%= t.fields_for :notes do |note| %>
+                <%= note.input :text, label: "Note (optional)",
+                    placeholder: note_string, input_html: { maxLength: 400, height: 400 } 
+                %>
+            <% end %>
+
+            <%= t.submit "Create task", class: "btn btn-primary mb-2" %>
+        <% end %>
+        <div>            
+            <%= link_to "« Back to all tasks", tasks_path, class: "text-decoration-none mt-3" %>
+        </div>        
+    </div>
+</div>
