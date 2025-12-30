@@ -15,10 +15,13 @@ $font-size-base:         1.2rem; // 1rem; // Old value
 // Colors
 $body-color: $gray;
 $primary:    $blue;
+$secondary:  $light-gray;
 $success:    $green;
-$info:       $yellow;
+// $info:       $yellow;
 $danger:     $red;
 $warning:    $orange;
+
+$text-muted: $light-gray;
 
 // Buttons & inputs' radius
 $border-radius-sm:            .0625rem;
