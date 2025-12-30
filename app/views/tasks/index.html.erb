@@ -33,7 +33,11 @@
                         <p>Synopsis:</p>
                         <p class="text-muted fs-italic"><%= truncate(task.synopsis, length: 20) %></p>
                         <hr>
-                        <%= link_to "Details »", task_path(task.id), class: "text-decoration-none" %>
+                        <span class="d-flex justify-content-between">
+                            <%= link_to "Details »", task_path(task.id), class: "text-decoration-none" %>
+                            <%= link_to raw('<i class="fa-regular fa-trash-can"></i> Delete'), task_path(task), data: {turbo_method: :delete, turbo_confirm: "Delete tasK?"},
+                                class: "text-decoration-none" %>
+                        </span>
                     </div>
 
                 </div>
