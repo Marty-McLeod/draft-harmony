@@ -21,5 +21,4 @@ Rails.application.routes.draw do
   # get "tasks/:id/edit", to: "tasks#edit"
   # post "tasks/:id/edit", to: "tasks#update"
 
-  
 end
