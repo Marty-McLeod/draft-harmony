@@ -10,4 +10,5 @@ class Task < ApplicationRecord
   # Mandates that at least a title and gen. prompt text must exist
   validates :title, presence: true
   validates :synopsis, presence: true
+  
 end
