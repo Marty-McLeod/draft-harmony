@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
     @tasks = Task.all
@@ -8,12 +8,14 @@ class TasksController < ApplicationController
   def show
     # @task = Task.find(params[:id])
     @task
+    @note = Note.new
   end
 
   def new
     @task = Task.new
     # Allow adding a Note in the simple_form, not requiring a separate form
     @task.notes.build # Prepare one Note model field in the #new form
+    @task.outline.build
   end
 
   def create
@@ -23,6 +25,20 @@ class TasksController < ApplicationController
       redirect_to task_path(@task), notice: "✔ Task and note created successfully"
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @task
+    @note = Note.new
+    @outline = Outline.new
+  end
+
+  def update
+    if @task.update(task_params)
+      redirect_to task_path(@task)
+    else
+      render edit_task_path(@task), notice: "✖ Task edit failed"
     end
   end
 
@@ -41,7 +57,8 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(
       :title, :synopsis,
-      notes_attributes: [:text]
+      notes_attributes: [:id, :text],
+      outline_attributes: [:id, :contents]
     )
   end
 

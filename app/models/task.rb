@@ -6,6 +6,7 @@ class Task < ApplicationRecord
 
   # Allo nested attributes for notes
   accepts_nested_attributes_for :notes, allow_destroy: true
+  accepts_nested_attributes_for :outline, allow_destroy: true
 
   # Mandates that at least a title and gen. prompt text must exist
   validates :title, presence: true
