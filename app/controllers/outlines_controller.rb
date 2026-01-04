@@ -16,6 +16,7 @@ class OutlinesController < ApplicationController
   end
 
   def destroy
+    @outline = Outline.find(params[:id])
     @outline.destroy
     redirect_to task_path(params[:task_id]), status: :see_other
   end
