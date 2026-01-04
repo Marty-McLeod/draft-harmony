@@ -1,0 +1,39 @@
+<div class="container">
+    
+    <div class="col-10 bg-white rounded-3 mt-3 p-3">
+        <h1 class="mt-3">Edit writing task</h1>
+        <p class="fst-italic text-black-50"><small>* indicates the field cannot be blank.</small></p>
+        <%= simple_form_for @task do |t| %>
+            <%= t.input :title, label_html: { class: "fw-bold"} %>
+            <%= t.input :synopsis, label_html: { class: "fw-bold"} %>
+
+            <!-- Use attributes to add note (optional) in the same form -->
+            <% if @task.outline.present? %>
+                <%= t.fields_for :outline do |o| %>
+                    <%= o.input :contents, as: :text, label: "Outline", label_html: { class: "fw-bold"},
+                    input_html: { rows: 20, style: "white-space: pre-wrap;" } %>
+                <% end %>
+            <% end %>
+
+            <% index = 0 %>
+            <%= t.fields_for :notes do |note| %>
+                <%= note.input :text, label: "Note ##{index += 1}", label_html: { class: "fw-bold"} %>
+            <% end %>
+
+            <%= t.submit "Update task", class: "btn btn-primary mb-2" %>
+        <% end %>
+
+        <% if !@task.outline.present? %>
+            <%= simple_form_for [@task, @outline] do |outline| %>
+                <%= outline.input :contents, as: :text, label: "Outline", label_html: { class: "fw-bold" } %>
+                <%= outline.submit "Add outline", class: "btn btn-sm btn-success text-white rounded-3" %>
+            <% end %>
+        <% end %>
+
+        <div class="mt-3">            
+            <%= link_to raw('<i class="fa-solid fa-arrow-left"></i> All tasks'), tasks_path, 
+                class: "text-decoration-none" 
+            %>
+        </div>   
+    </div>
+</div>

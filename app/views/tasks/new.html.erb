@@ -21,7 +21,9 @@
             <%= t.submit "Create task", class: "btn btn-primary mb-2" %>
         <% end %>
         <div>            
-            <%= link_to "« Back to all tasks", tasks_path, class: "text-decoration-none mt-3" %>
+            <%= link_to raw('<i class="fa-solid fa-arrow-left"></i> All tasks'), tasks_path, 
+                class: "text-decoration-none" 
+            %>
         </div>        
     </div>
 </div>

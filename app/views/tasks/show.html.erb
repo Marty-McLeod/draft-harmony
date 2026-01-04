@@ -8,9 +8,9 @@
         <h3>Synopsis:</h3>
         <p class="mb-3 bg-primary text-light p-2 rounded-3"><%= @task.synopsis %></p>
         <h3>Outline:</h3>
-        <p class="mb-3">
+        <p class="mb-3" >
             <% if @task.outline.present? %>
-                <%= @task.outline.contents %>
+                <%= simple_format(@task.outline.contents) %>
             <% else %>
                 (No outline generated)
             <% end %>
@@ -25,9 +25,20 @@
             <% else %>
                 <p class="fst-italic">(No notes addded yet)</p>
             <% end %>
+        <hr>
+        
+        <%= simple_form_for [@task, @note] do |note| %>
+            <%= note.input :text, label: "Add a note:", label_html: { class: "fw-bold"} %>
+            <%= note.submit "Add note", class: "btn btn-sm btn-success text-white rounded-3" %>
+        <% end %>
 
-        <div>            
-            <%= link_to "« Back to all tasks", tasks_path, class: "text-decoration-none mt-3" %>
+        <div class="d-flex justify-content-between mt-3">
+            <%= link_to raw('<i class="fa-solid fa-arrow-left"></i> All tasks'), tasks_path, 
+                class: "text-decoration-none" 
+            %>
+            <%= link_to raw('<i class="fa-solid fa-pencil"></i> Edit task'), edit_task_path(@task), 
+                class: "text-decoration-none" 
+            %>      
         </div>        
     </div>
 
