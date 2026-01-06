@@ -8,7 +8,7 @@ class OutlinesController < ApplicationController
     @outline = Outline.new(outline_params)
     @outline.task = Task.find(params[:task_id])
 
-    if @outline.save!
+    if @outline.save
       redirect_to task_path(params[:task_id])
     else
       redirect_to task_path(params[:task_id]), status: :see_other, notice: "✖ Outline create failed"

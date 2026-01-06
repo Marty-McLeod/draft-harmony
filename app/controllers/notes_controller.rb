@@ -16,10 +16,8 @@ class NotesController < ApplicationController
 
   def destroy 
     @note = Note.find(params[:id])
-    puts " " * 10
 
-
-    if @note.destroy!
+    if @note.destroy
       redirect_to task_path(params[:task_id]), status: :see_other
     else
       render :task, status: :unprocessable_entity, notice: "✖ Note delete failed"

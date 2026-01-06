@@ -8,13 +8,15 @@
         <h3>Synopsis:</h3>
         <p class="mb-3 bg-primary text-light p-3 rounded-3"><%= @task.synopsis %></p>
         <h3>Outline:</h3>
-        <p class="mb-3" >
+  
+        <div class="mb-3" id="div-outline">
             <% if @task.outline.present? %>
-                <%= simple_format(@task.outline.contents) %>
+                <% text = @task.outline.contents %>
+                <%= markdown(text) %>
             <% else %>
                 (No outline generated)
             <% end %>
-        </p>
+        </div>
         <h3>Notes:</h3>
             <% if @task.notes.present? %>
                 <% @task.notes.each do |note| %>
@@ -23,7 +25,7 @@
                         <%= note.text %>
                         <br>
                         <%= link_to raw('<i class="fa-regular fa-trash-can"></i> Delete'), task_note_path(@task, note), data: {turbo_method: :delete, turbo_confirm: "Delete note?"},
-                                        class: "btn btn-sm btn-outline-dark rounded-3 position-absolute bottom-0 end-0 m-2"
+                                        class: "btn btn-sm btn-outline-dark rounded-3 position-absolute bottom-0 end-0 m-2 fst-normal"
                         %>
                         <br>            
                     </p>                    

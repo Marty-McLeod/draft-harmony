@@ -1,0 +1,29 @@
+// Styles the outline text field contents, particularly
+// due to how large the default header (hx..) fonts are
+#div-outline {
+    padding: 8px 0 8px;
+    border-top: 2px solid #dddddd;
+    border-bottom: 2px solid #dddddd;
+
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    
+    h1,h2,h3,h4 {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.6em;
+    }
+
+    h3 {
+        font-size: 1.4em;
+    }
+
+    h4 {
+        font-size: 1.1em;
+    }
+}

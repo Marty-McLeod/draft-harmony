@@ -11,5 +11,16 @@ class Task < ApplicationRecord
   # Mandates that at least a title and gen. prompt text must exist
   validates :title, presence: true
   validates :synopsis, presence: true
+
+  before_update :process_outline # Callback to ensure delimiters '\' automatically added to '\n'
+  # linefeeds are removed, as these cause linefeeds to appear as standard text which cannot be
+  # rendered as a new line by view helpers such as simple_format() & markdown()
   
+  private
+
+  def process_outline
+    # call child record custom method
+    outline.clean_line_feeds
+  end
+
 end
