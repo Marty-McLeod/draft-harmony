@@ -20,8 +20,8 @@
                         <!-- show task title & indicate if an associated outline exists -->
                         <div class="mb-2">
                             <h4 class="card-title d-flex align-center"><%= task.title %></h4>
-                            <%= raw('<span class="badge bg-success text-light"><i class="fa-solid fa-check"></i> Outline</span>') if task.outline.present? %>
-                            <!-- <span class="badge bg-primary">ID: <%= task.id %></span> -->
+                            <%= raw('<span class="badge bg-success text-light"><i class="fa-solid fa-check"></i> Outline</span>') if !task.outline.contents.empty? %>
+                            <span class="badge bg-primary">ID: <%= task.id %></span>
                         </div>
                         <p class="mb-0"><strong>Assignment notes:</strong>
                         <% if task.notes.present? %>

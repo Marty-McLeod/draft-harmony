@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   get "how-to", to: "pages#how_to"
+  put "outline_generate", to: "outlines#generate"
   
   resources :tasks do
     resources :outlines, only: [:create, :edit, :update, :destroy]

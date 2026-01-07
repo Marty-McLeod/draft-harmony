@@ -12,6 +12,11 @@
             <%= t.input :title, placeholder: title_string %>
             <%= t.input :synopsis, placeholder: synopsis_string %>
             <!-- Use attributes to add note (optional) in the same form -->
+
+            <%= t.fields_for :outline do |outline| %>
+                <%= outline.input :contents, label: "Outline" %>         
+            <% end %>       
+
             <%= t.fields_for :notes do |note| %>
                 <%= note.input :text, label: "Note (optional)",
                     placeholder: note_string, input_html: { maxLength: 400, height: 400 } 
