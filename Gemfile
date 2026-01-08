@@ -51,6 +51,9 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem "devise"
 gem "faker"
+gem "ruby_llm", "~> 1.2.0"
+# Display Markdown text content
+gem "commonmarker"
 
 group :development, :test do
   gem "dotenv-rails"

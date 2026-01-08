@@ -15,14 +15,18 @@ class TasksController < ApplicationController
     @task = Task.new
     # Allow adding a Note in the simple_form, not requiring a separate form
     @task.notes.build # Prepare one Note model field in the #new form
-    @task.outline.build
+    @task.build_outline
   end
 
   def create
     @task = current_user.tasks.new(task_params)
+    # Assign an empty string to the Outline record contents. This makes view handling & record checking easier,
+    # plus we'll always need the field anyhow. Otherwise, the child outline record would be NIL until saved with :contents
+    # containing some value (non-empty field)
+    @task.outline.contents = ""
 
     if @task.save!
-      redirect_to task_path(@task), notice: "✔ Task and note created successfully"
+      redirect_to task_path(@task), notice: "✔ Task created successfully"
     else
       render :new, status: :unprocessable_entity
     end
