@@ -14,14 +14,18 @@
             <% if !@task.outline.contents.empty? %>
                 <% text = @task.outline.contents %>
                 <%= markdown(text) %>
-                <%= link_to raw('<i class="fa-regular fa-trash-can"></i> Delete'), task_outline_path(@task, @task.outline), data: {turbo_method: :delete, turbo_confirm: "Delete outline?"},
-                    class: "btn btn-sm btn-outline-dark rounded-3 position-absolute bottom-0 end-0 m-2 fst-normal"
-                %>
+                <span class="d-flex justify-content-end">
+                    <%= link_to raw('<i class="fa-regular fa-trash-can"></i> Delete'), task_outline_path(@task, @task.outline), 
+                        data: {turbo_method: :delete, turbo_confirm: "Delete outline?"},
+                        class: "btn btn-sm btn-delete btn-outline-dark rounded-3 m-2"
+                    %>
+                </span>
             <% else %>
                 <!-- Insert an empty object to fill the empty outline field with whitespace -->
                 <% outline_id = @task.outline.id %>
-                <%= button_to raw('<i class="fa-solid fa-file-signature"></i> Generate outline'), outline_generate_path(id: outline_id, task_id: @task.id), method: :put,
-                    class: "btn btn-success text-light rounded-3"
+                <%= button_to raw('<i class="fa-solid fa-file-signature"></i> Generate outline'), 
+                    outline_generate_path(id: outline_id, task_id: @task.id), method: :put,
+                    class: "btn btn-success rounded-3", id: "btn-generate"
                 %>
             <% end %>
 
@@ -35,7 +39,7 @@
                         <br>
                         <%= link_to raw('<i class="fa-regular fa-trash-can"></i> Delete'), task_note_path(@task, note), 
                             data: {turbo_method: :delete, turbo_confirm: "Delete note?"},
-                            class: "btn btn-sm btn-outline-dark rounded-3 position-absolute bottom-0 end-0 m-2 fst-normal"
+                            class: "btn btn-sm btn-delete btn-outline-dark rounded-3 position-absolute bottom-0 end-0 m-2"
                         %>
                         <br>            
                     </p>                    
