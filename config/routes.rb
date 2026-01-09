@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   get "how-to", to: "pages#how_to"
+  # Custom route for generating outline text via LLM agent, calling method separate from the Task controller
   put "outline_generate", to: "outlines#generate"
   
   resources :tasks do
