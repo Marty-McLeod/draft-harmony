@@ -21,8 +21,13 @@ class Task < ApplicationRecord
   
   # Condietional callback: callback used only if :outline exists; else, a method failure would occur
   before_update :process_outline, if: :outline 
+  after_create_commit :broadcast_append_to_tasks
 
   private
+
+  def broadcast_append_to_tasks
+    broadcast_append_to "tasks-stream", target: "id-tasks", partial: "tasks/task", locals: { task: self }
+  end
 
   # :outline model callback, pre-update
   def process_outline

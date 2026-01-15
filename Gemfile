@@ -54,6 +54,8 @@ gem "faker"
 gem "ruby_llm", "~> 1.2.0"
 # Display Markdown text content
 gem "commonmarker"
+# Add Action Cable/Turbo Streams
+gem "solid_cable"
 
 group :development, :test do
   gem "dotenv-rails"

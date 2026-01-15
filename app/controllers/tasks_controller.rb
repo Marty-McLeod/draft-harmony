@@ -26,6 +26,7 @@ class TasksController < ApplicationController
     @task.outline.contents = ""
 
     if @task.save!
+      broadcast_append_to(@task)
       redirect_to task_path(@task), notice: "✔ Task created successfully"
     else
       render :new, status: :unprocessable_entity
