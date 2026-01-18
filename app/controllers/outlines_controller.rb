@@ -1,9 +1,8 @@
 class OutlinesController < ApplicationController
 
   SYSTEM_PROMPT_PREPEND =  "You are an English composition instructor. I am a college student with an essay writing assignment. "
-  UNUSED = "main plot topics and characters in the book Moby Dick."
-  SYSTEM_PROMPT_POSTEND = "Output format is Markdown only for the response."
-  SYSTEM_PROMPT = "You are an English composition instructor. I am a college student with an essay writing assignment. Help me by outlining the main plot topics and characters in Moby Dick. Output format is Markdown only for the response."
+  SYSTEM_PROMPT_APPEND = "Output format is Markdown only for the response."
+
 
   def initialize
     @chat = RubyLLM.chat
@@ -43,12 +42,12 @@ class OutlinesController < ApplicationController
     #   @outline.task = @task
     # end
     build_system_prompt
-    # prompt = "#{SYSTEM_PROMPT_PREPEND} #{@task.synopsis} #{SYSTEM_PROMPT_POSTEND}"
+    # prompt = "#{SYSTEM_PROMPT_PREPEND} #{@task.synopsis} #{SYSTEM_PROMPT_APPEND}"
     response = @chat.ask(@system_prompt)
+
     # If it exists, strip out leading & trailing Markdown backticks which may appear from the ChatGPT chat model
-    # @outline.contents = response.content.gsub('```', '')
-    @outline.contents = response.content
-    
+    @outline.contents = clean_line_feeds(response.content)
+
     if @outline.save
       redirect_to task_path(params[:task_id])
     else
@@ -61,7 +60,7 @@ class OutlinesController < ApplicationController
     user_directive = @task.synopsis
     # sanitize/strip user text as needed here!
     user_directive = user_directive.gsub("\n", "")
-    @system_prompt = prompt = "#{SYSTEM_PROMPT_PREPEND} #{user_directive} #{SYSTEM_PROMPT_POSTEND}"
+    @system_prompt = prompt = "#{SYSTEM_PROMPT_PREPEND} #{user_directive} #{SYSTEM_PROMPT_APPEND}"
   end
 
 
@@ -69,6 +68,18 @@ class OutlinesController < ApplicationController
 
   def outline_params
     params.require(:outline).permit(:contents)
+  end
+
+  # REGEX_EXPRESSION = /\A\`{3}\s?|\s?\`{3}\z/
+
+  # Method to strip out '\' delimeters automatically being
+  # added in the text field in the form.
+  # Updated: 'cleans' out extraneous Markdown code formatting triple backticks ('```')
+  # which are causing erroenous display of outline text as code. Uses RegEx to filter out only
+  # first and last 3x backticks, allowing code snippets to display properly.
+  def clean_line_feeds(text)
+    text = text.gsub(/\A\`{3}|\`{3}\z/, '').gsub("markdown", '')
+    text = text.gsub("\\n", "\n")
   end
 
 end

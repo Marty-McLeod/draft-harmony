@@ -1,6 +1,8 @@
 RubyLLM.configure do |config|
-  config.openai_api_key = ENV["GITHUB_API_TOKEN"] # Current token name (updated for Heroku)
-  config.openai_api_base = "https://models.inference.ai.azure.com"
+  # config.openai_api_key = ENV["GITHUB_API_TOKEN"] # Current token name (updated for Heroku)
+  config.openai_api_key = ENV["OPEN_AI_API_KEY"]
+  # config.openai_api_base = "https://models.inference.ai.azure.com"
+  config.openai_api_base = "https://api.openai.com/v1"
 end
 
 
@@ -13,4 +15,3 @@ end
 #   # config.anthropic_api_key = ENV.fetch('ANTHROPIC_API_KEY', nil)
 #   # ... see Configuration guide for all options ...
 # end
-8
