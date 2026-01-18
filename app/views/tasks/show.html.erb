@@ -20,6 +20,15 @@
                         class: "btn btn-sm btn-delete btn-outline-dark rounded-3 m-2"
                     %>
                 </span>
+                <!-- Adds file download buttons for send_data helper in Tasks controller -->
+                <span class="d-flex justify-content-start">
+                    <%= link_to raw('Download TXT file <i class="fa-solid fa-download"></i>'), 
+                        download_outline_task_path(@task, format_type: 'txt'), 
+                        class: "btn btn-success text-white rounded-3 m-2" %>
+                    <%= link_to raw('Download PDF file <i class="fa-solid fa-download"></i>'), 
+                        download_outline_task_path(@task, format_type: 'pdf'), 
+                        class: "btn btn-success text-white rounded-3 m-2" %>
+                </span>                
             <% else %>
                 <!-- Insert an empty object to fill the empty outline field with whitespace -->
                 <% outline_id = @task.outline.id %>

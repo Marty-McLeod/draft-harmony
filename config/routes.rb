@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   put "outline_generate", to: "outlines#generate"
   
   resources :tasks do
+    member do
+      get :download_outline
+    end
     resources :outlines, only: [:create, :edit, :update, :destroy]
     resources :notes, only: [:create, :edit, :update, :destroy]
   end

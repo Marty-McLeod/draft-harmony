@@ -54,6 +54,8 @@ gem "faker"
 gem "ruby_llm", "~> 1.2.0"
 # Display Markdown text content
 gem "commonmarker"
+# Provide support for .PDF files (downloads)
+gem "prawn"
 
 group :development, :test do
   gem "dotenv-rails"
