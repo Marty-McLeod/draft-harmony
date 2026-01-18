@@ -90,6 +90,7 @@ class TasksController < ApplicationController
     cleaned = text.gsub(/\#+\s/, '')
     cleaned.gsub(/\*+/, '')
   end
+  
   # #####################################################
   
   private
