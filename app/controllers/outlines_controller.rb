@@ -70,15 +70,16 @@ class OutlinesController < ApplicationController
     params.require(:outline).permit(:contents)
   end
 
-  # REGEX_EXPRESSION = /\A\`{3}\s?|\s?\`{3}\z/
-
-  # Method to strip out '\' delimeters automatically being
-  # added in the text field in the form.
-  # Updated: 'cleans' out extraneous Markdown code formatting triple backticks ('```')
-  # which are causing erroenous display of outline text as code. Uses RegEx to filter out only
-  # first and last 3x backticks, allowing code snippets to display properly.
+  # Strips out extraneous characters which cause issues rendering Markdown text in the view via the
+  # view helper. 1) Removes AI agent's insertiong of "Outline: " (trailing whitespace is 0 or more),
+  # 2) Trailsing/leading "```" triple backticks which cause erroneous display of all text as a code block,
+  # 3) backslash added after an edit/save in the text field. This causes the HTML line breaks to fail and line returns
+  # are displayed as "\n" literally., 4) "markdown" text may exist in OpenAI output.
+  # 
   def clean_line_feeds(text)
-    text = text.gsub(/\A\`{3}|\`{3}\z/, '').gsub("markdown", '')
+    text = text.gsub(/\A\`{3}|\`{3}\z/, '').gsub("markdown", '')    
+    text = text.gsub(/\A(\n)/, '') # Removing leading '\n', if present, and retain
+    text = text.gsub(/\A((# Outline: )|(# Outline for )|(# Outline of ))/, '# ')
     text = text.gsub("\\n", "\n")
   end
 
