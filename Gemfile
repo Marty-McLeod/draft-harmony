@@ -56,6 +56,7 @@ gem "ruby_llm", "~> 1.2.0"
 gem "commonmarker"
 # Provide support for .PDF files (downloads)
 gem "prawn"
+gem "cloudinary"
 
 group :development, :test do
   gem "dotenv-rails"
