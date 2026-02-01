@@ -20,11 +20,12 @@
           <%= f.input :password_confirmation,
                       required: true,
                       input_html: { autocomplete: "new-password" } %>
-          <%= f.input :avatar, as: :file, label: "Upload profile image (optional)" %>
+          <%= f.input :avatar, as: :file, label: "Upload profile image (optional)", 
+            hint: "Must be .JPG, .PNG, or .WEBP & under 1MB size." %>
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Sign up" %>
+          <%= f.button :submit, "Sign up", class: "btn btn-primary text-white" %>
         </div>
       <% end %>
 
