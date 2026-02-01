@@ -1,0 +1,25 @@
+<!-- Profile page view -->
+<div class="container">
+
+    <div class="col-10 mt-3 p-3 mx-auto">
+
+        <h1>My profile</h1>
+
+        <% if current_user.avatar.attached? %>
+            <%= cl_image_tag @current_user.avatar.key, height: 240, width: 240, crop: :fill, class: "rounded-3 shadow" %>
+        <% else %>
+            <div class="d-flex rounded align-items-center justify-content-center" style="background-image: url(<%= image_url 'default-user-avatar.jpg' %>); 
+                height: 240px; width: 240px; background-size: contain;">
+                (No profile image set)
+            </div>
+        <% end %>            
+
+        <h4 class="my-3">Email:</h4>
+        <p><%= @current_user.email %></p>
+        <div class="d-flex">
+            <%= link_to "« My tasks", tasks_path, class: "me-3 text-decoration-none" %>
+            <%= link_to "Edit profile »", edit_user_registration_path(current_user), class: "text-decoration-none" %>
+        </div>
+        
+    </div>
+</div>
