@@ -1,8 +1,6 @@
 <!-- Home page view -->
 <div class="container">
-
     
-
         <h1 class="mt-3">Draft Harmony makes writing projects <em>easier!</em></h1>
         <div class="row justify-content-center">
             <div class="d-flex col-sm-11 col-md-6 rounded-3 my-3" style="background-image: url('<%= image_path('home-landing-people-2.jpg')%>');
@@ -29,34 +27,80 @@
         </div>
 
         <h2>Features:</h2>
+        <!-- Display features grid with Font Awesome favicons and text -->
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
 
-        <div class="row justify-content-between mt-3">
-
-            <div class="d-flex flex-column col-3 border border-info border-3 align-items-center p-3" style="border-radius: 0.8em;">
-                <span style="font-size: 3em;">
-                    <i class="fa-solid fa-list-check"></i>
-                    <i class="fa-solid fa-laptop-file"></i>
-                </span>
-                <p class="mt-3">Generate a detailed, helpful document outline in <strong>seconds</strong> by tapping into the power of AI technology.</p>
+            <div class="col">
+                <div class="d-flex flex-column border border-info border-3 align-items-center p-3" style="border-radius: 0.8em; min-height: 13em;">
+                    <span class="text-primary" style="font-size: 3em;">
+                        <i class="fa-solid fa-list-check"></i>
+                        <i class="fa-solid fa-laptop-file"></i>
+                    </span>
+                    <p class="mt-3">Generate a detailed, helpful document outline in <strong>seconds</strong> 
+                        by tapping into the power of AI technology.
+                    </p>
+                </div>
             </div>
 
-            <div class="d-flex flex-column col-3 border border-info border-3 align-items-center p-3" style="border-radius: 0.8em;">
-                <span style="font-size: 3em;">
-                    <i class="fa-solid fa-file-pen"></i>
-                </span>
-                    <p class="mt-3">Add or change notes for writing tasks any time. Keep track of important assignment details.</p>
+            <div class="col">            
+                <div class="d-flex flex-column border border-info border-3 align-items-center p-3" style="border-radius: 0.8em; min-height: 13em;">
+                    <span class="text-primary" style="font-size: 3em;">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <i class="fa-solid fa-file-pen"></i>
+                    </span>
+                        <p class="mt-3">Add or change notes for writing tasks any time. Keep track of important assignment details.
+                        </p>
+                </div>
             </div>
 
-            <div class="d-flex flex-column col-3 border border-info border-3 justify-content-center align-items-center p-3" style="border-radius: 0.8em;">
-                <span style="font-size: 3em;">
-                    <i class="fa-solid fa-download me-3"></i>
-                    <i class="fa-solid fa-file-export me-3"></i>
-                    <i class="fa-regular fa-file-pdf"></i>
-                </span>
-                <p class="mt-3 mb-0">Easily download your work as a PDF or text file for flexibility.</p>
-            </div>            
+            <div class="col">            
+                <div class="d-flex flex-column border border-info border-3 align-items-center p-3" style="border-radius: 0.8em; min-height: 13em;">
+                    <span class="text-primary" style="font-size: 3em;">
+                        <i class="fa-solid fa-file-export me-3"></i>
+                        <i class="fa-regular fa-file-pdf"></i>
+                    </span>
+                    <p class="mt-3 mb-0">Easily download your work as a PDF or text file for flexibility.
+                    </p>
+                </div>            
+            </div>
+
+            <div class="col">            
+                <div class="d-flex flex-column border border-info border-3 align-items-center p-3" style="border-radius: 0.8em; min-height: 13em;">
+                    <span class="text-primary" style="font-size: 3em;">
+                        <i class="fa-solid fa-list-check"></i>
+                        <i class="fa-solid fa-laptop-file"></i>
+                    </span>
+                    <p class="mt-3">Don't like the results or need to make changes? <strong>No problem!</strong> Re-generate your work outline or
+                        simply click and edit as needed.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col">            
+                <div class="d-flex flex-column border border-info border-3 align-items-center p-3" style="border-radius: 0.8em; min-height: 13em;">
+                    <span class="text-primary" style="font-size: 3em;">
+                        <i class="fa-solid fa-list-check"></i>
+                        <i class="fa-solid fa-laptop-file"></i>
+                    </span>
+                    <p class="mt-3">(TO BE ADDED)
+                    </p>
+                </div>
+            </div>
+
+            <div class="col">            
+                <div class="d-flex flex-column border border-info border-3 align-items-center p-3" style="border-radius: 0.8em; min-height: 13em;">
+                    <span class="text-primary" style="font-size: 3em;">
+                        <i class="fa-solid fa-list-check"></i>
+                        <i class="fa-solid fa-laptop-file"></i>
+                    </span>
+                    <p class="mt-3">(TO BE ADDED)
+                    </p>
+                </div>
+            </div>
 
         </div>
+        <!-- End features grid -->
+
         <div class="mt-3">
             <%= link_to "Learn how to use Draft Harmony »", how_to_path, class: "btn btn-primary btn-lg my-3 fw-medium", style: "border-radius: 6px;" %>
         </div>
