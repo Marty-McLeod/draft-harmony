@@ -1,7 +1,7 @@
 <!-- "How to" page view, explaining basic use instructions to users (no login required) -->
 <div class="container">
 
-    <div class="col-12 bg-white rounded-3 mt-3 p-3">
+    <div class="bg-white rounded-3 mt-3 p-3">
         <div class="d-flex justify-content-between align-items-center">
             <%# Show the current count for user's tasks that exist %>
                 <h1>My writing tasks (<%= @tasks.count %>)</h1>
@@ -11,43 +11,48 @@
         </div>
 
         <%# Iterate over tasks already created and display as cards to user %>
-        <div class="row justify-content-between gap-3 mt-3">
+        <div class="row row-cols-1 row-cols-md-2 g-3 mt-3">
+            
             <% @tasks.each do |task| %>
 
-                <div class="card col-5 m-1">
-
-                    <div class="card-body">
+            <div class="col">
                         <!-- show task title & indicate if an associated outline exists -->
-                        <div class="mb-2">
-                            <h4 class="card-title d-flex align-center"><%= task.title %></h4>
-                            <%= raw('<span class="badge bg-success text-light"><i class="fa-solid fa-check"></i> Outline</span>') if !task.outline.contents.empty? %>
-                            <% if Rails.env.development? %>
-                                <span class="badge bg-primary">ID: <%= task.id %></span>
-                            <% end %>
-                        </div>
-                        <p class="mb-0"><strong>Assignment notes:</strong>
-                        <% if task.notes.present? %>
-                            <%= "#{task.notes.count} saved" %>
-                        <% else %>
-                            <p><em>(No notes yet)</em></p>
+                <div class="row border p-2 m-1 bg-light position-relative" style="height: 340px;">
+                    <div class="mb-2">
+                        <h4 class="d-flex align-center"><%= task.title %></h4>
+                        <%= raw('<span class="badge bg-success text-light"><i class="fa-solid fa-check"></i> Outline</span>') if !task.outline.contents.empty? %>
+                        <% if Rails.env.development? %>
+                            <span class="badge bg-primary">ID: <%= task.id %></span>
                         <% end %>
-                        </p>
-                        <p class="mb-1"><strong>Synopsis:</strong></p>
-                        <p class="text-muted fst-italic"><%= truncate(task.synopsis, length: 90) %></p>
-                        <hr>
-                        <span class="d-flex justify-content-between">
-                            <span>
-                                <%= link_to raw('<i class="fa-regular fa-eye"></i> Details'), task_path(task.id), class: "text-decoration-none me-2" %>
-                                <%= link_to raw('<i class="fa-solid fa-pencil"></i> Edit task'), edit_task_path(task.id), 
-                                    class: "text-decoration-none" 
-                                %>
-                            </span>
-                            <%= link_to raw('<i class="fa-regular fa-trash-can"></i> Delete'), task_path(task), data: {turbo_method: :delete, turbo_confirm: "Delete tasK?"},
-                                class: "text-decoration-none" %>
-                        </span>
+                    
+                    <p class="mb-0"><strong>Assignment notes:</strong>
+                    <% if task.notes.present? %>
+                        <%= "#{task.notes.count} saved" %>
+                    <% else %>
+                        <em>(No notes yet)</em>
+                    <% end %>
+                    </p>
+                    <p class="mb-1"><strong>Synopsis:</strong></p>
+                    <p class="text-muted fst-italic"><%= truncate(task.synopsis, length: 90) %></p>
+
                     </div>
 
+                    <span class="d-flex align-self-end justify-content-between border-top border-2 m-1 pt-2">
+                        <span>
+                            <%= link_to raw('<i class="fa-regular fa-eye"></i> Details'), task_path(task.id), class: "text-decoration-none me-2" %>
+                            <%= link_to raw('<i class="fa-solid fa-pencil"></i> Edit task'), edit_task_path(task.id), 
+                                class: "text-decoration-none" 
+                            %>
+                        </span>
+                        <span>
+                        <%= link_to raw('<i class="fa-regular fa-trash-can"></i> Delete'), task_path(task), data: {turbo_method: :delete, turbo_confirm: "Delete tasK?"},
+                            class: "text-decoration-none" %>
+                        </span>
+                    </span>
+
                 </div>
+
+            </div>
             <% end %>
         </div>
     </div>
