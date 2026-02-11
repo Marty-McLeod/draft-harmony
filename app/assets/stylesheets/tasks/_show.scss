@@ -42,3 +42,9 @@
     font-family: "Work Sans", sans-serif!important;
 }
 
+/* Adds top & bottom inside spacing (padding) to code blocks for a bit better appearance */
+pre:has(code) {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
