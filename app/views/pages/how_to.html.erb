@@ -2,13 +2,104 @@
 <div class="container">
 
     <div class="col-12 col-md-10 bg-white rounded-3 mt-3 p-3">
-        <h1>How it works</h1>
+        <h1>How to use Draft Harmony</h1>
         <p>
-           Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. 
+           Creating an outline only requires a few steps and serves as a great starting point for a writing task (assignment, job, project, etc.). 
+           You'll need to <%= link_to "sign up here", new_user_registration_path %> for access to the writing task tool, then follow the following steps.
         </p>
-        <p>
-           Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. 
-        </p>
+        <h3>1. Go to "My tasks" from the upper right-hand of the screen.</h3>
+        <%= image_tag "new-task-example.jpg", style: "width: 100%;", class: "border border-2 rounded my-3" %>
+        <h3>2. Click on the "Create new task" button.
+        <h3>3. Add info to your new writing task</h3>
+            <p>
+                Here we'll fill out a few basic text fields before we save our new task and create an outline from the tool.
+            </p>
+            <%= image_tag "create-new-task-info-example.jpg", style: "width: 100%;", class: "border border-2 rounded my-3" %>
+            <p>Enter a title to help you keep track of the writing task. You can also add a work/project note if you like (optional) or wait and add some later.     
+            </p>
+            <h4>Synopsis:</h4>
+            <p>
+                The synopsis is a simple summary of what the tool will create for you. This is generally  but not always- 
+                an outline which can be used for things like book summaries, English composition assignments, and even presentation slides.
+
+                In the <strong>Synopsis</strong> field, enter a specific instruction describing what you need to be provided.
+            </p>
+            <p>
+                Some good examples are:
+                <ul>
+                    <li><em>"Create a basic outline for the novel. Each outline section should cover main events in the book and include important characters. 
+                        Summarize the main themes behind the story."</em>
+                    </li>
+                    <li><em>"Create an outline providing main advantages and benefits of a traditional nuclear family. 
+                        When citing statistics, <strong>provide the sources in a separate section with a URL link for each source, where available.</strong> 
+                        Include a summary at the end."</em>
+                    </li>
+                </ul>
+            </p>
+            <p>
+                Things to avoid with a synopsis:
+
+                <ul>
+                    <li>Avoid works like "I", "we", "us", or any unnecessary descriptive words. <strong>Focus on being clear & specific.</strong>
+                    </li>
+                    <li>You can describe the output general format, but don't specify the <strong>text</strong> format. Example: "an outline" or "a 3
+                    paragraph summary" is ok. "HTML format" is not. (The tool uses a pre-defined format to display your results properly.)
+                    </li>
+                    <li><strong>Keep it simple - don't write paragraphs here!</strong> You should, in nearly all cases, be able to get good results
+                    using only a few concise sentences.
+                    </li>
+                </ul>
+            </p>
+            <div class="bg-primary-subtle text-dark p-3 mb-2">
+                <strong>Tip:</strong> As seen in the example above, the tool can also include reference links in the outline output as well, including
+                the URL link to check references. <strong>Note that it's your responsibility to verify links are relevant and appropriate sources
+                when including them in work you submit in written documents.</strong>
+            </div>
+        <h3>4. Once you're done, click "Create task"!</h3>
+            <%= image_tag "create-task-button-example.jpg", style: "width: 100%;", class: "border border-2 rounded my-3" %>        
+            <p>
+                Your new task will be saved and appear under the "My tasks" page. From here, you can:
+                <ul>
+                    <li>View its details</li>
+                    <li>Edit the task including the outline box (if generated) or notes.</li>
+                    <li>Delete a task permanently.</li>
+                </ul>
+            </p>
+            <%= image_tag "my-tasks-page-example.jpg", style: "width: 100%;", class: "border border-2 rounded my-3" %>
+        <h3>5. Generating an outline</h3>
+            <p>
+                Here comes the fun part! To complete a writing task's output, click on the desired task's "View details" link.
+                If there's no outline present already, the green "Generate outline" button will be visible.-
+
+                Click the button and in a few moments the A.I. agent will return the output based on your synopsis instructions.
+            </p>
+            <%= image_tag "generate-outline-example.jpg", style: "width: 100%;", class: "border border-2 rounded my-3" %>
+            <div class="bg-primary-subtle text-dark p-3 mb-2">
+                <strong>Note:</strong> For output with program code, code snippets will be formatted for neatness in a colored code box.
+            </div>
+            <p>
+                After an outline has been created, download buttons will appear at the bottom of the Outline box. Click your choice
+                to download the contents as a plain text file (.txt) or Adobe PDF format (.pdf).
+            </p>
+            <%= image_tag "download-buttons-example.jpg", style: "width: 100%;", class: "border border-2 rounded my-3" %>
+            
+        <h3>6. Making changes</h3>
+            <p>
+                <ul>
+                    <li>
+                        At any time you can make changes to any of the text fields - including outline text - by click on "Edit task" under
+                        the My Task page for any available.
+                    </li>
+                    <li>
+                        Additionally, if you're so inclined, you can delete an outline and re-run the generate tool. This is especially helpful
+                        if you've made changes to your synopsis directives or would like to try a different output.
+                    </li>
+                </ul>
+
+                Once you're done making changes, click the "Update task" button and you're done!
+            </p>
+            <%= image_tag "edit-writing-task-example.jpg", style: "width: 100%;", class: "border border-2 rounded my-3" %>
+        <%= link_to "« Home", root_path, class: "text-decoration-none fw-bold" %>
     </div>
 
 </div>
