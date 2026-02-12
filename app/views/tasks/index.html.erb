@@ -16,15 +16,23 @@
             <% @tasks.each do |task| %>
 
             <div class="col">
-                        <!-- show task title & indicate if an associated outline exists -->
-                <div class="row border p-2 m-1 bg-light position-relative" style="height: 340px;">
-                    <div class="mb-2">
-                        <h4 class="d-flex align-center"><%= task.title %></h4>
-                        <%= raw('<span class="badge bg-success text-light"><i class="fa-solid fa-check"></i> Outline</span>') if !task.outline.contents.empty? %>
+                <!-- show task title & indicate if an associated outline exists -->
+                <div class="row border p-2 m-1 bg-light" >
+
+                    <h4 style="min-height: 60px;"><%= task.title %></h4>
+
+                    <div class="mb-0">
+                        <% if task.outline.contents.empty? %>
+                            <%= raw('<span class="badge bg-danger-subtle"><i class="fa-solid fa-x"></i> No outline</span>') %>
+                        <% else %>
+                            <%= raw('<span class="badge bg-success text-light"><i class="fa-solid fa-check"></i> Outline</span>') %>
                         <!-- <% if Rails.env.development? %>
                             <span class="badge bg-primary">ID: <%= task.id %></span>
                         <% end %>
                         -->
+                        <% end %>
+                    </div>
+
                     <p class="mb-0"><strong>Assignment notes:</strong>
                     <% if task.notes.present? %>
                         <%= "#{task.notes.count} saved" %>
@@ -32,23 +40,24 @@
                         <em>(No notes yet)</em>
                     <% end %>
                     </p>
-                    <p class="mb-1"><strong>Synopsis:</strong></p>
-                    <p class="text-muted fst-italic"><%= truncate(task.synopsis, length: 90) %></p>
+                    <p class="mb-0"><strong>Synopsis:</strong></p>
+                    <p class="text-muted fst-italic mb-1" style="min-height: 60px;"><%= truncate(task.synopsis, length: 90) %></p>
 
-                    </div>
 
-                    <span class="d-flex align-self-end justify-content-between border-top border-2 m-1 pt-2">
-                        <span>
-                            <%= link_to raw('<i class="fa-regular fa-eye"></i> Details'), task_path(task.id), class: "text-decoration-none me-2" %>
-                            <%= link_to raw('<i class="fa-solid fa-pencil"></i> Edit task'), edit_task_path(task.id), 
+                    <div class="row border-top border-2 m-1 p-0 pt-2">
+                        <div class="col-6 col-lg-4">
+                            <%= link_to raw('<i class="fa-regular fa-eye fa-sm"></i> Details'), task_path(task.id), class: "text-decoration-none" %>
+                        </div>
+                        <div class="col-6 col-lg-4">
+                            <%= link_to raw('<i class="fa-solid fa-pencil fa-sm"></i> Edit task'), edit_task_path(task.id), 
                                 class: "text-decoration-none" 
                             %>
-                        </span>
-                        <span>
-                        <%= link_to raw('<i class="fa-regular fa-trash-can"></i> Delete'), task_path(task), data: {turbo_method: :delete, turbo_confirm: "Delete tasK?"},
+                        </div>
+                        <div class="col-12 col-lg-4">
+                        <%= link_to raw('<i class="fa-regular fa-trash-can fa-sm"></i> Delete'), task_path(task), data: {turbo_method: :delete, turbo_confirm: "Delete tasK?"},
                             class: "text-decoration-none" %>
-                        </span>
-                    </span>
+                        </div>
+                    </div>
 
                 </div>
 
